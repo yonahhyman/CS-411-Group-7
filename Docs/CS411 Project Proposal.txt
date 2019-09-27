@@ -1,7 +1,22 @@
 CS411 Team 7 Project Proposal
 
 Primary Idea
-We suggest contributing to the current political climate with a fake news generator. Our proposal entails grabbing headlines from news site RSS feeds such as CNN, MSNBC, etc, and running them through OpenAI’s predictive language model GPT-2 774M to generate a bogus article. Using a sentiment analysis API such as Watson Tone Analyzer, the fake news article would be run through the language model again and again, mixing with previously saved articles in a database, until anger, sadness, or other emotional extremes were achieved. A text coherence API such as DeepCoherence would also be used to make sure the text was understandable, whereupon a twitter bot would post the result with the hashtag #FakeNews. The goal of this web app is to bring a little fun to a subscribed user’s twitter timeline, break into the million-dollar news parody industry currently being dominated by The Onion, and remind people that things could be a lot more absurd than they already are.
+We suggest contributing to the current political climate with a fake news generator. Our proposal entails grabbing headlines from
+news site RSS feeds such as CNN, MSNBC, etc, and running them through OpenAIâ€™s predictive language model GPT-2 774M to generate a
+bogus article. Using a sentiment analysis API such as Watson Tone Analyzer, the fake news article would be run through the language
+model again and again, mixing with previously saved articles in a database, until anger, sadness, or other emotional extremes were
+achieved. A text coherence API such as DeepCoherence would also be used to make sure the text was understandable, whereupon a 
+twitter bot would post the result with the hashtag #FakeNews. The goal of this web app is to bring a little fun to a subscribed 
+
+userâ€™s twitter timeline, break into the million-dollar news parody industry currently being dominated by The Onion, and remind 
+people that things could be a lot more absurd than they already are.
 
 Secondary Idea
-What’s for dinner? We propose a web app to help users decide what to make for dinner after they realize they haven’t gone food shopping and have the bare minimum to work with. When looking for a new recipe or something to make for dinner, people often whip out a cookbook, or more likely, refer to Google. We propose a more interactive web app for users to search for recipes with the ingredients they have and in turn get a recommendation(s) that could work well with what they have on hand. Users can use Twitter, Facebook or Gmail to create an account that will store some basic profile information. Using the Food API, MealDB API, Whisk and perhaps the Chomp API (programmableweb.com), we hope to create a more interactive and enjoyable cooking experience for users by giving them access to databases with hundreds of thousands of recipes that include pictures, specific ingredients, nutritional information, cooking times, and cooking difficulty.
+Whatâ€™s for dinner? We propose a web app to help users decide what to make for dinner after they realize they havenâ€™t gone food
+shopping and have the bare minimum to work with. When looking for a new recipe or something to make for dinner, people often whip
+out a cookbook, or more likely, refer to Google. We propose a more interactive web app for users to search for recipes with the
+ingredients they have and in turn get a recommendation(s) that could work well with what they have on hand. Users can use Twitter, 
+Facebook or Gmail to create an account that will store some basic profile information. Using the Food API, MealDB API, Whisk and 
+perhaps the Chomp API (programmableweb.com), we hope to create a more interactive and enjoyable cooking experience for users by 
+giving them access to databases with hundreds of thousands of recipes that include pictures, specific ingredients, nutritional 
+information, cooking times, and cooking difficulty.
