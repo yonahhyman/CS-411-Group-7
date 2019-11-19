@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
-class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.data}) : super(key: key);
+class HomePage extends StatefulWidget {
+  HomePage({Key key, this.data}) : super(key: key);
   final String data;
   @override
-  _MyHomePageState createState() => _MyHomePageState();
+  _HomePageState createState() => _HomePageState();
 }
 
 Future<http.Response> fetchPost(String input) {
   return http.post("http://35.229.109.77:5000/result/", body: {'input': input});
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _HomePageState extends State<HomePage> {
   var result;
 
   @override

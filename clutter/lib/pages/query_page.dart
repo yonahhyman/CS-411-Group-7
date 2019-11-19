@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:clutter/home_page.dart';
+import 'package:clutter/pages/home_page.dart';
+import 'package:clutter/containers/drawer/drawer.dart';
 
 class QueryPage extends StatefulWidget {
   QueryPage();
@@ -16,6 +17,7 @@ class _QueryPageState extends State<QueryPage> {
       appBar: AppBar(
         title: Text('CS411 Demo'),
       ),
+      drawer: DrawerContainer(),
       body: SingleChildScrollView(
           child: Padding(
         padding: const EdgeInsets.all(32.0),
@@ -42,7 +44,7 @@ class _QueryPageState extends State<QueryPage> {
                 child: Text("Get Result"),
                 onPressed: () {
                   Navigator.of(context).push(MaterialPageRoute(
-                      builder: (BuildContext context) => MyHomePage(
+                      builder: (BuildContext context) => HomePage(
                           data: textEditingController.text)));
                 })
           ],

@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "970224460384",
+    "firebase_url": "https://cs411-finalproject.firebaseio.com",
+    "project_id": "cs411-finalproject",
+    "storage_bucket": "cs411-finalproject.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:970224460384:android:fb9983915cba52eab05905",
+        "android_client_info": {
+          "package_name": "com.example.clutter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "970224460384-5lca2p1pfl4dkfgma42dehpue3he3of3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCMx-YU0eFqdaMKoQEgiLncurgqk4yfDZM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "970224460384-5lca2p1pfl4dkfgma42dehpue3he3of3.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "970224460384-f7013m2c7pa3pbqg2u5e26vt5es2eu3a.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.clutter"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
