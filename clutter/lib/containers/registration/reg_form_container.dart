@@ -22,34 +22,9 @@ class RegFormContainer extends StatelessWidget {
                 new ListTile(
                   title: new TextField(
                     controller: vm.usernameController,
-                    onChanged: (text) {
-                      vm.unameCheck(text);
-                    },
                     decoration: new InputDecoration(
                         prefixIcon: Icon(Icons.account_circle),
                         hintText: "Username",
-                        border: OutlineInputBorder(
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(32)))),
-                  ),
-                ),
-                new ListTile(
-                  title: new TextField(
-                    controller: vm.cityController,
-                    decoration: new InputDecoration(
-                        prefixIcon: Icon(Icons.location_on),
-                        hintText: "City",
-                        border: OutlineInputBorder(
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(32)))),
-                  ),
-                ),
-                new ListTile(
-                  title: new TextField(
-                    controller: vm.stateController,
-                    decoration: new InputDecoration(
-                        prefixIcon: Icon(Icons.location_city),
-                        hintText: "State",
                         border: OutlineInputBorder(
                             borderRadius:
                                 BorderRadius.all(Radius.circular(32)))),
@@ -61,31 +36,7 @@ class RegFormContainer extends StatelessWidget {
                     controller: vm.phoneController,
                     decoration: new InputDecoration(
                         prefixIcon: Icon(Icons.contact_phone),
-                        hintText: "Contact",
-                        border: OutlineInputBorder(
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(32)))),
-                  ),
-                ),
-                new ListTile(
-                  title: new TextField(
-                    keyboardType: TextInputType.number,
-                    controller: vm.bankNumController,
-                    decoration: new InputDecoration(
-                        prefixIcon: Icon(Icons.account_balance),
-                        hintText: "Bank Account Number",
-                        border: OutlineInputBorder(
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(32)))),
-                  ),
-                ),
-                new ListTile(
-                  title: new TextField(
-                    keyboardType: TextInputType.number,
-                    controller: vm.squareChangeController,
-                    decoration: new InputDecoration(
-                        prefixIcon: Icon(Icons.account_balance_wallet),
-                        hintText: "SpareChange Account Number",
+                        hintText: "Number",
                         border: OutlineInputBorder(
                             borderRadius:
                                 BorderRadius.all(Radius.circular(32)))),
@@ -101,11 +52,7 @@ class RegFormContainer extends StatelessWidget {
                           vm.update(
                               vm.currentUser.data['uid'],
                               vm.usernameController.text,
-                              vm.cityController.text,
-                              vm.stateController.text,
-                              vm.phoneController.text,
-                              vm.bankNumController.text,
-                              vm.squareChangeController.text);
+                              vm.phoneController.text);
                         },
                         color: Colors.blueAccent,
                         child: Text('Submit'),
@@ -122,73 +69,32 @@ class RegFormContainer extends StatelessWidget {
 
 class _ViewModel {
   final DocumentSnapshot currentUser;
-  final Function(String) unameCheck;
-  final Function(String, String, String, String, String, String, String) update;
+
+  final Function(String, String, String) update;
   final TextEditingController usernameController;
-  final TextEditingController cityController;
-  final TextEditingController stateController;
   final TextEditingController phoneController;
-  final TextEditingController bankNumController;
-  final TextEditingController squareChangeController;
 
   _ViewModel(
       {@required this.currentUser,
-      this.unameCheck,
       this.usernameController,
-      this.cityController,
-      this.stateController,
       this.phoneController,
-      this.bankNumController,
-      this.squareChangeController,
       this.update});
 
   static _ViewModel fromStore(Store<AppState> store) {
     return new _ViewModel(
-        unameCheck: (String unamecheck) async {
-          final Firestore _db = Firestore.instance;
-          QuerySnapshot check = await _db
-              .collection('users')
-              .where("uname", isEqualTo: unamecheck)
-              .getDocuments();
-          if (unamecheck == null || unamecheck == "") {
-            print("enter something");
-          } else if (check.documents.isEmpty ||
-              check.documents.single.data['uname'] ==
-                  store.state.currentUser.data['uname']) {
-            print("available");
-          } else {
-            print("taken");
-          }
-        },
-        update: (String uid, String uname, String city, String stt,
-            String number, String banknum, String squarechange) {
+        update: (String uid, String uname, String number) {
           store.dispatch(UpdateDB(
               uid: uid,
               uname: uname,
-              city: city,
-              stt: stt,
-              number: number,
-              banknum: banknum,
-              squarechange: squarechange));
+              number: number));
         },
         currentUser: store.state.currentUser,
         usernameController: new TextEditingController.fromValue(new TextEditingValue(
             text: store.state.currentUser.data['uname'] ?? "",
             selection: new TextSelection.collapsed(
                 offset: store.state.currentUser.data['uname']?.length ?? 0))),
-        cityController: new TextEditingController.fromValue(new TextEditingValue(
-            text: store.state.currentUser.data['city'] ?? "",
-            selection: new TextSelection.collapsed(
-                offset: store.state.currentUser.data['city']?.length ?? 0))),
-        stateController: new TextEditingController.fromValue(
-            new TextEditingValue(
-                text: store.state.currentUser.data['stt'] ?? "",
-                selection: new TextSelection.collapsed(
-                    offset: store.state.currentUser.data['stt']?.length ?? 0))),
         phoneController: new TextEditingController.fromValue(new TextEditingValue(
             text: store.state.currentUser.data['number'] ?? "",
-            selection: new TextSelection.collapsed(offset: store.state.currentUser.data['number']?.length ?? 0))),
-        bankNumController: new TextEditingController.fromValue(new TextEditingValue(text: store.state.currentUser.data['banknum'] ?? "", selection: new TextSelection.collapsed(offset: store.state.currentUser.data['banknum']?.length ?? 0))),
-        squareChangeController: new TextEditingController.fromValue(new TextEditingValue(text: store.state.currentUser.data['squarechange'] ?? "", selection: new TextSelection.collapsed(offset: store.state.currentUser.data['squarechange']?.length ?? 0))));
+            selection: new TextSelection.collapsed(offset: store.state.currentUser.data['number']?.length ?? 0))));
   }
 }

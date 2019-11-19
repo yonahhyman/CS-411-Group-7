@@ -20,11 +20,7 @@ Middleware<AppState> _createUpdateMiddleware() {
         DocumentReference mydb = _db.collection('users').document(action.uid);
         Map<String, String> data = <String, String>{
           "uname": action.uname,
-          "city": action.city,
-          "stt": action.stt,
           "number": action.number,
-          "banknum": action.banknum,
-          "squarechange": action.squarechange
         };
         await mydb.updateData(data);
         DocumentSnapshot user = await mydb.get();
