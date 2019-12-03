@@ -38,7 +38,7 @@ class _HomePageState extends State<HomePage> {
     } else {
       return Scaffold(
         appBar: AppBar(
-          title: Text('CS411 Demo'),
+          title: Text('Clutter'),
         ),
         body: Center(
           child: Column(
