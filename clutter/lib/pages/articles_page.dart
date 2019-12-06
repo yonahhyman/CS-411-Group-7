@@ -31,7 +31,8 @@ class _ArticlesPageState extends State<ArticlesPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text('CS411 Demo'),
+          title: Text('The Scallion'),
+          backgroundColor: Colors.green,
         ),
         drawer: DrawerContainer(),
         body: _articles.isEmpty

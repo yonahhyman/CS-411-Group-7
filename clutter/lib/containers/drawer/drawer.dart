@@ -35,7 +35,7 @@ class DrawerContainer extends StatelessWidget {
         return new Drawer(
             child: Column(children: <Widget>[
           UserAccountsDrawerHeader(
-            decoration: BoxDecoration(color: Colors.blueAccent),
+            decoration: BoxDecoration(color: Colors.green),
             accountName: new Text(vm.name),
             accountEmail: new Text(vm.email),
             currentAccountPicture: CircleAvatar(

@@ -13,7 +13,7 @@ class RandomPage extends StatefulWidget {
 }
 
 Future<http.Response> fetchPost() {
-  return http.get("http://35.237.20.51:5000/result/");
+  return http.post("http://35.237.20.51:5000/random-article/");
 }
 
 class _RandomPageState extends State<RandomPage> {
@@ -21,7 +21,7 @@ class _RandomPageState extends State<RandomPage> {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final Firestore _db = Firestore.instance;
   DocumentReference _userDoc;
-  List<String> _articles;
+  List<String> _articles = [];
 
   @override
   void initState() {
@@ -34,10 +34,12 @@ class _RandomPageState extends State<RandomPage> {
       _auth.currentUser().then((currUser) {
         _userDoc = _db.collection('users').document(currUser.uid);
         _userDoc.get().then((onValue) {
-          _articles = onValue.data['articles'].toList();
+          for (var article in onValue.data['articles']) {
+            _articles.add(article);
+          }
+          _articles.add(result);
+          _userDoc.updateData(<String, dynamic>{'articles': _articles});
         });
-        _articles.add(result);
-        _userDoc.updateData(<String, dynamic>{'articles': _articles});
       });
     });
   }
@@ -55,7 +57,8 @@ class _RandomPageState extends State<RandomPage> {
     } else {
       return Scaffold(
         appBar: AppBar(
-          title: Text('CS411 Demo'),
+          title: Text('The Scallion'),
+          backgroundColor: Colors.green,
         ),
         drawer: DrawerContainer(),
         body: Center(

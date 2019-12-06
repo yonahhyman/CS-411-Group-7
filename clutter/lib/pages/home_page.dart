@@ -22,7 +22,7 @@ class _HomePageState extends State<HomePage> {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final Firestore _db = Firestore.instance;
   DocumentReference _userDoc;
-  List<String> _articles;
+  List<String> _articles = [];
 
   @override
   void initState() {
@@ -35,10 +35,12 @@ class _HomePageState extends State<HomePage> {
       _auth.currentUser().then((currUser) {
         _userDoc = _db.collection('users').document(currUser.uid);
         _userDoc.get().then((onValue) {
-          _articles = onValue.data['articles'].toList();
+          for (var article in onValue.data['articles']) {
+            _articles.add(article);
+          }
+          _articles.add(result);
+          _userDoc.updateData(<String, dynamic>{'articles': _articles});
         });
-        _articles.add(result);
-        _userDoc.updateData(<String, dynamic>{'articles': _articles});
       });
     });
   }
@@ -56,7 +58,8 @@ class _HomePageState extends State<HomePage> {
     } else {
       return Scaffold(
         appBar: AppBar(
-          title: Text('Clutter'),
+          title: Text('The Scallion'),
+          backgroundColor: Colors.green,
         ),
         drawer: DrawerContainer(),
         body: Center(
