@@ -17,7 +17,7 @@ class DrawerContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     final drawerItems = [
       new DrawerItem("Home Page", Icons.home),
-      new DrawerItem("Account Info", Icons.account_circle)
+      new DrawerItem("My Articles", Icons.folder_open)
     ];
     return new StoreConnector<AppState, _ViewModel>(
       converter: _ViewModel.fromStore,
@@ -93,9 +93,8 @@ class _ViewModel {
             case 0:
               Navigator.pushReplacementNamed(context, "/");
               return;
-
             case 1:
-              Navigator.pushReplacementNamed(context, "/update");
+              Navigator.pushReplacementNamed(context, "/articles");
               return;
           }
         }

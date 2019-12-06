@@ -39,18 +39,17 @@ Middleware<AppState> _createLogInMiddleware() {
           Map<String, String> data = <String, String>{
             "displayName": user.displayName,
             "email": user.email,
-            "number": user.phoneNumber,
             "photoURL": user.photoUrl,
             "uid": user.uid
           };
           await mydb.setData(data);
           raid = await mydb.get();
           store.dispatch(new LogInSuccessful(user: raid));
-          navigatorKey.currentState.pushReplacementNamed('/register');
+          navigatorKey.currentState.pushReplacementNamed('/');
         } else if (raid.data['uname'] == null || raid.data['uname'] == "") {
           // returning user
           store.dispatch(new LogInSuccessful(user: raid));
-          navigatorKey.currentState.pushReplacementNamed('/register');
+          navigatorKey.currentState.pushReplacementNamed('/');
         } else if (raid.data['uname'] != null) {
           store.dispatch(new LogInSuccessful(user: raid));
           navigatorKey.currentState.pushReplacementNamed('/');

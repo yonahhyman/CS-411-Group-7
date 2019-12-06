@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:clutter/pages/home_page.dart';
+import 'package:clutter/pages/random_page.dart';
 import 'package:clutter/containers/drawer/drawer.dart';
 
 class QueryPage extends StatefulWidget {
@@ -46,7 +47,13 @@ class _QueryPageState extends State<QueryPage> {
                   Navigator.of(context).push(MaterialPageRoute(
                       builder: (BuildContext context) => HomePage(
                           data: textEditingController.text)));
-                })
+                }),
+                RaisedButton(
+                  child: Text("Generate Random Article"),
+                  onPressed: (){
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (BuildContext context) => RandomPage()));
+                },)
           ],
         ),
       )),

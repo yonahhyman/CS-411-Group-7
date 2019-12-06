@@ -5,18 +5,17 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
-class HomePage extends StatefulWidget {
-  HomePage({Key key, this.data}) : super(key: key);
-  final String data;
+class RandomPage extends StatefulWidget {
+  RandomPage({Key key}) : super(key: key);
   @override
-  _HomePageState createState() => _HomePageState();
+  _RandomPageState createState() => _RandomPageState();
 }
 
-Future<http.Response> fetchPost(String input) {
-  return http.post("http://35.237.20.51:5000/result/", body: {'input': input});
+Future<http.Response> fetchPost() {
+  return http.get("http://35.237.20.51:5000/result/");
 }
 
-class _HomePageState extends State<HomePage> {
+class _RandomPageState extends State<RandomPage> {
   var result;
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final Firestore _db = Firestore.instance;
@@ -26,7 +25,7 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
-    fetchPost(widget.data).then((onValue) {
+    fetchPost().then((onValue) {
       result = jsonDecode(onValue.body)[0];
       setState(() {
         result = jsonDecode(onValue.body)[0];
@@ -60,8 +59,11 @@ class _HomePageState extends State<HomePage> {
         body: Center(
             child: SingleChildScrollView(
           child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[Text(result)]),
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Text(result),
+            ],
+          ),
         )),
       );
     }
