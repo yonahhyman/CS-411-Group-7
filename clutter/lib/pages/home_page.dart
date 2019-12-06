@@ -4,6 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:clutter/containers/drawer/drawer.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({Key key, this.data}) : super(key: key);
@@ -57,6 +58,7 @@ class _HomePageState extends State<HomePage> {
         appBar: AppBar(
           title: Text('Clutter'),
         ),
+        drawer: DrawerContainer(),
         body: Center(
             child: SingleChildScrollView(
           child: Column(

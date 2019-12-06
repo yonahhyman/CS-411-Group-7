@@ -4,6 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:clutter/containers/drawer/drawer.dart';
 
 class RandomPage extends StatefulWidget {
   RandomPage({Key key}) : super(key: key);
@@ -56,6 +57,7 @@ class _RandomPageState extends State<RandomPage> {
         appBar: AppBar(
           title: Text('CS411 Demo'),
         ),
+        drawer: DrawerContainer(),
         body: Center(
             child: SingleChildScrollView(
           child: Column(

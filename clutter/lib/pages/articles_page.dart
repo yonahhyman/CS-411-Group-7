@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:clutter/containers/drawer/drawer.dart';
 
 class ArticlesPage extends StatefulWidget {
   ArticlesPage({Key key}) : super(key: key);
@@ -11,16 +12,17 @@ class ArticlesPage extends StatefulWidget {
 class _ArticlesPageState extends State<ArticlesPage> {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final Firestore _db = Firestore.instance;
-  List<String> _articles;
+  List<String> _articles = [];
 
   @override
   void initState() {
     super.initState();
     _auth.currentUser().then((currUser) {
       _db.collection('users').document(currUser.uid).get().then((onValue) {
-        setState(() {
-          _articles = onValue.data['articles'].toList();
-        });
+        for (var article in onValue.data['articles']) {
+          _articles.add(article);
+        }
+        setState(() {});
       });
     });
   }
@@ -31,13 +33,21 @@ class _ArticlesPageState extends State<ArticlesPage> {
         appBar: AppBar(
           title: Text('CS411 Demo'),
         ),
-        body: _articles == null
+        drawer: DrawerContainer(),
+        body: _articles.isEmpty
             ? new Container()
             : new Center(
                 child: new ListView.builder(
                     itemCount: _articles.length,
                     itemBuilder: (BuildContext context, int index) {
-                      return new Text(_articles[index]);
+                      return new Card(
+                        child: new Container(
+                          padding: new EdgeInsets.all(32.0),
+                          child: new Column(
+                            children: <Widget>[new Text(_articles[index])],
+                          ),
+                        ),
+                      );
                     })));
   }
 }
